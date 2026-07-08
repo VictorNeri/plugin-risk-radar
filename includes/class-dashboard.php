@@ -166,9 +166,21 @@ class PRR_Dashboard {
                                 'green'   => 'OK',
                                 'unknown' => 'UNKNOWN',
                             );
-                            $label = isset( $labels[ $plugin['risk_level'] ] ) ? $labels[ $plugin['risk_level'] ] : strtoupper( $plugin['risk_level'] );
+                            $label       = isset( $labels[ $plugin['risk_level'] ] ) ? $labels[ $plugin['risk_level'] ] : strtoupper( $plugin['risk_level'] );
+                            $risk_score  = isset( $plugin['risk_score'] ) ? $plugin['risk_score'] : null;
+                            $score_class = '';
+                            if ( ! is_null( $risk_score ) ) {
+                                if ( $risk_score > 60 )      $score_class = 'prr-score-high';
+                                elseif ( $risk_score > 30 )  $score_class = 'prr-score-medium';
+                                else                         $score_class = 'prr-score-low';
+                            }
                             ?>
-                            <td><span class="prr-badge prr-badge-<?php echo esc_attr( $plugin['risk_level'] ); ?>"><?php echo esc_html( $label ); ?></span></td>
+                            <td>
+                                <span class="prr-badge prr-badge-<?php echo esc_attr( $plugin['risk_level'] ); ?>"><?php echo esc_html( $label ); ?></span>
+                                <?php if ( ! is_null( $risk_score ) ) : ?>
+                                    <div><span class="prr-score <?php echo esc_attr( $score_class ); ?>" title="<?php echo esc_attr( implode( "\n", $plugin['score_factors'] ) ); ?>"><?php echo (int) $risk_score; ?>/100</span></div>
+                                <?php endif; ?>
+                            </td>
                             <td><strong><?php echo esc_html( $plugin['name'] ); ?></strong></td>
                             <td><?php echo esc_html( $plugin['version'] ); ?></td>
                             <td>

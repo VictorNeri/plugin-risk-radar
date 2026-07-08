@@ -21,6 +21,7 @@ define( 'PRR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 // Load core classes
 require_once PRR_PLUGIN_DIR . 'includes/class-ownership-tracker.php';
+require_once PRR_PLUGIN_DIR . 'includes/class-risk-score.php';
 require_once PRR_PLUGIN_DIR . 'includes/class-scanner.php';
 require_once PRR_PLUGIN_DIR . 'includes/class-dashboard.php';
 require_once PRR_PLUGIN_DIR . 'includes/class-notifications.php';

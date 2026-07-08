@@ -32,6 +32,31 @@
     margin-top: 0;
 }
 
+.prr-score {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 5px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: default;
+}
+
+.prr-score-low {
+    background: #edfaef;
+    color: #006b1a;
+}
+
+.prr-score-medium {
+    background: #fef9ec;
+    color: #7a5000;
+}
+
+.prr-score-high {
+    background: #fce8e8;
+    color: #b32d2e;
+}
+
 .prr-row-acknowledged {
     background-color: #f6f7f7 !important;
 }

@@ -54,7 +54,9 @@ class PRR_Scanner {
             'risk_level'       => 'unknown', // green | yellow | red | unknown
             'reason'           => '',
             'last_updated'     => null,
-            'ownership_change' => null, // populated below if a change was detected
+            'ownership_change' => null,
+            'risk_score'       => null,
+            'score_factors'    => array(),
         );
 
         $api_data = self::fetch_wporg_data( $slug );
@@ -67,8 +69,10 @@ class PRR_Scanner {
 
         // Closed = actively removed from the repository (security issue or ToS violation). Red.
         if ( $api_data === 'closed' ) {
-            $status['risk_level'] = 'red';
-            $status['reason']     = 'Removed from WordPress.org. Plugins are closed for security issues or terms violations — strongly consider replacing it.';
+            $status['risk_level']   = 'red';
+            $status['reason']       = 'Removed from WordPress.org. Plugins are closed for security issues or terms violations — strongly consider replacing it.';
+            $status['risk_score']   = 100;
+            $status['score_factors'] = array( 'Removed from WordPress.org repository.' );
             return $status;
         }
 
@@ -116,6 +120,10 @@ class PRR_Scanner {
             }
         }
 
+        $score_result            = PRR_Risk_Score::calculate( $api_data, ! empty( $status['ownership_change'] ) );
+        $status['risk_score']    = $score_result['score'];
+        $status['score_factors'] = $score_result['factors'];
+
         return $status;
     }
 
@@ -140,10 +148,14 @@ class PRR_Scanner {
             'request' => rawurlencode( wp_json_encode( array(
                 'slug'   => $slug,
                 'fields' => array(
-                    'last_updated' => true,
-                    'sections'     => false,
-                    'author'       => true,
-                    'contributors' => true,
+                    'last_updated'             => true,
+                    'sections'                 => false,
+                    'author'                   => true,
+                    'contributors'             => true,
+                    'tested'                   => true,
+                    'active_installs'          => true,
+                    'support_threads'          => true,
+                    'support_threads_resolved' => true,
                 ),
             ) ) ),
         ), 'https://api.wordpress.org/plugins/info/1.2/' );
@@ -166,9 +178,13 @@ class PRR_Scanner {
         }
 
         $data = array(
-            'last_updated' => isset( $json['last_updated'] ) ? $json['last_updated'] : null,
-            'author'       => isset( $json['author'] ) ? wp_strip_all_tags( $json['author'] ) : null,
-            'contributors' => isset( $json['contributors'] ) ? array_keys( (array) $json['contributors'] ) : array(),
+            'last_updated'             => isset( $json['last_updated'] ) ? $json['last_updated'] : null,
+            'author'                   => isset( $json['author'] ) ? wp_strip_all_tags( $json['author'] ) : null,
+            'contributors'             => isset( $json['contributors'] ) ? array_keys( (array) $json['contributors'] ) : array(),
+            'tested'                   => isset( $json['tested'] ) ? $json['tested'] : null,
+            'active_installs'          => isset( $json['active_installs'] ) ? (int) $json['active_installs'] : null,
+            'support_threads'          => isset( $json['support_threads'] ) ? (int) $json['support_threads'] : null,
+            'support_threads_resolved' => isset( $json['support_threads_resolved'] ) ? (int) $json['support_threads_resolved'] : null,
         );
 
         set_transient( $transient_key, $data, DAY_IN_SECONDS );
