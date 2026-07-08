@@ -4,7 +4,7 @@ Tags: security, plugins, audit, maintenance, vulnerability
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,13 @@ No. Plugin Risk Radar identifies risk so you can make an informed decision — u
 1. The main dashboard showing color-coded plugin risk levels.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix: use UTC timestamps (time()) instead of local-offset current_time('timestamp') for accurate staleness checks.
+* Fix: closed/removed WordPress.org plugins now flagged red instead of yellow.
+* Fix: daily email no longer re-sends for persistently-red plugins — alerts fire once per new detection.
+* New: Acknowledge button per plugin row — silences alerts and dims the row for known/accepted risks.
+* New: Manual scan rate-limited to once per 5 minutes to prevent API hammering.
 
 = 1.0.0 =
 * Initial release.

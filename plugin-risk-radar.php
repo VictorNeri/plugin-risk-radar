@@ -3,7 +3,7 @@
  * Plugin Name: Plugin Risk Radar
  * Plugin URI:  https://github.com/VictorNeri/plugin-risk-radar
  * Description: Scans your installed plugins and flags ones that are abandoned, closed from WordPress.org, or overdue for updates — so you can spot risk before it becomes a hack.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      VictorNeri
  * Author URI:  https://github.com/VictorNeri
  * License:     GPLv2 or later
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'PRR_VERSION', '1.0.0' );
+define( 'PRR_VERSION', '1.0.1' );
 define( 'PRR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
