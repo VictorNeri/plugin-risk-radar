@@ -4,7 +4,7 @@ Tags: security, plugins, audit, maintenance, vulnerability
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,11 @@ No. Plugin Risk Radar identifies risk so you can make an informed decision — u
 1. The main dashboard showing color-coded plugin risk levels.
 
 == Changelog ==
+
+= 1.0.2 =
+* New: 0–100 risk score per plugin, combining staleness, WP version compatibility lag, support thread health, install base size, and ownership-change signal.
+* New: Score displayed beneath the status badge with a color-coded indicator (green/yellow/red) and a hover tooltip showing the factor breakdown.
+* Scanner now fetches additional WP.org API fields: tested, active_installs, support_threads, support_threads_resolved.
 
 = 1.0.1 =
 * Fix: use UTC timestamps (time()) instead of local-offset current_time('timestamp') for accurate staleness checks.
