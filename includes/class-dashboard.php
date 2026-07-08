@@ -159,7 +159,16 @@ class PRR_Dashboard {
                         $is_ack = $plugin['acknowledged'];
                     ?>
                         <tr class="<?php echo $is_ack ? 'prr-row-acknowledged' : ''; ?>">
-                            <td><span class="prr-badge prr-badge-<?php echo esc_attr( $plugin['risk_level'] ); ?>"><?php echo esc_html( strtoupper( $plugin['risk_level'] ) ); ?></span></td>
+                            <?php
+                            $labels = array(
+                                'red'     => 'HIGH RISK',
+                                'yellow'  => 'CAUTION',
+                                'green'   => 'OK',
+                                'unknown' => 'UNKNOWN',
+                            );
+                            $label = isset( $labels[ $plugin['risk_level'] ] ) ? $labels[ $plugin['risk_level'] ] : strtoupper( $plugin['risk_level'] );
+                            ?>
+                            <td><span class="prr-badge prr-badge-<?php echo esc_attr( $plugin['risk_level'] ); ?>"><?php echo esc_html( $label ); ?></span></td>
                             <td><strong><?php echo esc_html( $plugin['name'] ); ?></strong></td>
                             <td><?php echo esc_html( $plugin['version'] ); ?></td>
                             <td>
