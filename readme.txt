@@ -1,5 +1,5 @@
 === Plugin Risk Radar ===
-Contributors: yourwporgusername
+Contributors: VictorNeri
 Tags: security, plugins, audit, maintenance, vulnerability
 Requires at least: 6.0
 Tested up to: 6.7

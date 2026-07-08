@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Plugin Risk Radar
- * Plugin URI:  https://example.com/plugin-risk-radar
+ * Plugin URI:  https://github.com/VictorNeri/plugin-risk-radar
  * Description: Scans your installed plugins and flags ones that are abandoned, closed from WordPress.org, or overdue for updates — so you can spot risk before it becomes a hack.
  * Version:     1.0.0
- * Author:      Your Name
- * Author URI:  https://example.com
+ * Author:      VictorNeri
+ * Author URI:  https://github.com/VictorNeri
  * License:     GPLv2 or later
  * Text Domain: plugin-risk-radar
  */
