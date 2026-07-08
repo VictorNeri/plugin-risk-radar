@@ -86,7 +86,7 @@ class PRR_Ownership_Tracker {
             $existing[] = array(
                 'author'       => $author,
                 'contributors' => $contributors,
-                'recorded_at'  => current_time( 'timestamp' ),
+                'recorded_at'  => time(),
             );
 
             // Trim to the most recent N snapshots

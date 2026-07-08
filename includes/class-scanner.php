@@ -37,7 +37,7 @@ class PRR_Scanner {
         }
 
         update_option( self::OPTION_KEY, array(
-            'scanned_at' => current_time( 'timestamp' ),
+            'scanned_at' => time(),
             'plugins'    => $results,
         ) );
 
@@ -84,7 +84,7 @@ class PRR_Scanner {
             $last_updated_ts = strtotime( $api_data['last_updated'] );
             $status['last_updated'] = $last_updated_ts;
 
-            $months_since_update = ( current_time( 'timestamp' ) - $last_updated_ts ) / ( 30 * DAY_IN_SECONDS );
+            $months_since_update = ( time() - $last_updated_ts ) / ( 30 * DAY_IN_SECONDS );
 
             if ( $months_since_update >= self::STALE_MONTHS ) {
                 $status['risk_level'] = 'red';

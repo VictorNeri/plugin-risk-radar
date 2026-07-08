@@ -29,9 +29,11 @@ Recent WordPress supply-chain incidents have shown that even "trusted" plugins c
 = Features (Free) =
 
 * One-click plugin risk scan
-* Color-coded dashboard (red / yellow / green)
+* Color-coded dashboard (red / yellow / green) — closed/removed WP.org plugins flagged red
+* Plugin ownership-change detection (author and contributor tracking)
+* Acknowledge known risks to silence repeat alerts
 * Daily automatic re-scan
-* Email alert when a high-risk plugin is detected
+* Email alerts for newly high-risk plugins only (no daily spam)
 * Zero configuration, zero external accounts required
 
 = Features (Pro) =
@@ -39,7 +41,6 @@ Recent WordPress supply-chain incidents have shown that even "trusted" plugins c
 Upgrade to Plugin Risk Radar Pro for:
 
 * Vulnerability database cross-referencing (known CVEs)
-* Plugin ownership-change alerts
 * Slack notifications
 * Downloadable PDF audit reports — great for agencies managing multiple client sites
 

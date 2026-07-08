@@ -31,3 +31,16 @@
 .prr-upsell h3 {
     margin-top: 0;
 }
+
+.prr-row-acknowledged {
+    background-color: #f6f7f7 !important;
+}
+
+.prr-row-acknowledged .prr-badge {
+    opacity: 0.4;
+}
+
+.prr-ack-label {
+    color: #8c8f94;
+    font-size: 12px;
+}

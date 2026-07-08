@@ -32,9 +32,14 @@ class PRR_Notifications {
         $data    = PRR_Scanner::get_results();
         $plugins = $data['plugins'];
 
+        $acknowledged_keys = get_option( 'prr_acknowledged_plugins', array() );
+
         $risky_keys = array_keys( array_filter( $plugins, function( $p ) {
             return $p['risk_level'] === 'red';
         } ) );
+
+        // Never notify about acknowledged plugins — the admin has already reviewed them.
+        $risky_keys = array_values( array_diff( $risky_keys, $acknowledged_keys ) );
 
         // Only alert on plugins that have newly turned red since the last notification.
         // This prevents the same email being sent every day for a persistently-red plugin.
